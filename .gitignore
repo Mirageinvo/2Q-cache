@@ -1,0 +1,5 @@
+#ingnore build folder
+build
+
+#ignore vscode
+.vscode
