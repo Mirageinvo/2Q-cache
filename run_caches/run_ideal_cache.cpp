@@ -1,17 +1,15 @@
 #include <iostream>
+#include <assert.h>
 #include "../Cache/includes/ideal_cache.hpp"
 #include "../Cache/includes/ideal_cache_impl.hpp"
 
 int main() {
-    int cache_size, request_num;
-    int* request_arr;
-    ideal_cache<int> cache;
-    std::cin >> cache_size >> request_num;
+    size_t cache_capacity, request_num;
+    std::cin >> cache_capacity >> request_num;
+    assert(cache_capacity > 0);
 
-    request_arr = (int*)calloc(request_num, sizeof(int));
-    for (int i = 0; i < request_num; ++i) {
-        std::cin >> request_arr[i];
-    }
-
+    ideal_cache<int> cache(cache_capacity, request_num);
+    cache.get_request_arr();
+    cache.start_work();    //the cache starts its work
     return 0;
 }
