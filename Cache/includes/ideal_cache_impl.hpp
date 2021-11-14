@@ -71,11 +71,11 @@ void ideal_cache<T>::put_el_in_cache(size_t pos) {
             tmp--;
             list_hash[el] = &(*tmp);
         }
-        order_hash[el].first++;
     }
     else {
         hit_number_++;
     }
+    order_hash[el].first++;
 }
 
 template <typename T>
@@ -109,7 +109,25 @@ void ideal_cache<T>::start_work() {
     for (size_t i = 0; i < request_arr_size_; ++i) {
         put_el_in_cache(i);
         put_maxdist_el_in_tail(i);
+        ///to debug
+        pr_list();
+        ///
     }
 }
+
+
+
+
+
+
+//////////to debug
+template <typename T>
+void ideal_cache<T>::pr_list() const {
+    for (const auto& el: cache_list) {
+        std::cout << el << " ";
+    }
+    std::cout << std::endl;
+}
+//////
 
 #endif //CACHE_INCLUDES_IDEAL_CACHE_IMP

@@ -16,6 +16,10 @@ class ideal_cache {
     int number_of_hits() const;
     void start_work();
 
+    //////////to debug
+    void pr_list() const;
+    //////
+
   private:
     void put_el_in_cache(size_t pos);
     void put_maxdist_el_in_tail(size_t pos);
