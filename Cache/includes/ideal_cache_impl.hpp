@@ -23,18 +23,13 @@ void ideal_cache<T>::get_request_arr() {
     for (size_t i = 0; i < request_arr_size_; ++i) {
         std::cin >> request_arr_[i];
         if (order_hash.find(request_arr_[i]) == order_hash.end()) {
-            order_hash[request_arr_[i]] = { 0, { i } };
+            order_hash[request_arr_[i]] = { 0, { static_cast<int>(i) } };
         }
         else {
             order_hash[request_arr_[i]].second.push_back(i);
         }
     }
 }
-
-/*template <typename T>
-size_t ideal_cache<T>::cache_cur_size() const {
-    return cur_size_;
-}*/
 
 template <typename T>
 int ideal_cache<T>::number_of_hits() const {
@@ -63,16 +58,18 @@ void ideal_cache<T>::put_el_in_cache(size_t pos) {
             cache_list.push_back(el);
             auto tmp = cache_list.end();
             tmp--;
-            list_hash[el] = tmp;
+            list_hash[el] = &(*tmp);
             cur_size_++;
         }
         else {
+            auto tmp = cache_list.end();
+            tmp--;
             list_hash.erase(*tmp);
             cache_list.pop_back();
             cache_list.push_back(el);
-            auto tmp = cache_list.end();
+            tmp = cache_list.end();
             tmp--;
-            list_hash[el] = tmp;
+            list_hash[el] = &(*tmp);
         }
         order_hash[el].first++;
     }
@@ -100,16 +97,18 @@ void ideal_cache<T>::put_maxdist_el_in_tail(size_t pos) {
     auto tmp = cache_list.end();
     tmp--;
     std::swap(*pretendent_iter, *tmp);
-    list_hash[*tmp] = pretendent_iter;
-    list_hash[*pretendent_iter] = tmp;
-    assert(std::next(list_hash[*pretendent_iter]) == cache_list.end());
+    list_hash[*tmp] = &(*pretendent_iter);
+    list_hash[*pretendent_iter] = &(*tmp);
+    tmp = cache_list.end();
+    tmp--;
+    assert(*list_hash[*pretendent_iter] == *tmp);
 }
 
 template <typename T>
 void ideal_cache<T>::start_work() {
     for (size_t i = 0; i < request_arr_size_; ++i) {
         put_el_in_cache(i);
-        put_maxdist_el_in_tail();
+        put_maxdist_el_in_tail(i);
     }
 }
 

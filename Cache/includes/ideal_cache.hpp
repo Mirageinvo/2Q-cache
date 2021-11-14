@@ -13,7 +13,6 @@ class ideal_cache {
     ~ideal_cache();
 
     void get_request_arr();
-    //size_t cache_cur_size() const;//maybe it's not needed
     int number_of_hits() const;
     void start_work();
 
@@ -27,10 +26,8 @@ class ideal_cache {
     int hit_number_;
     T* request_arr_;
     std::list<T> cache_list;
-    std::unordered_map<T, std::list<T>::iterator> list_hash;
+    std::unordered_map<T, T*> list_hash;
     std::unordered_map<T, std::pair<size_t, std::vector<int>>> order_hash;
-}
-
-
+};
 
 #endif //CACHE_INCLUDES_IDEAL_CACHE
