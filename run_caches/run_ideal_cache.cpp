@@ -10,6 +10,7 @@ int main() {
 
     ideal_cache<int> cache(cache_capacity, request_num);
     cache.get_request_arr();
-    cache.start_work();    //the cache starts its work
+    cache.start_work();                              //the cache starts its work
+    std::cout << cache.number_of_hits() << std::endl;
     return 0;
 }
