@@ -10,7 +10,6 @@ class ideal_cache {
   public:
     ideal_cache(size_t cache_capacity, size_t request_arr_size);
     ~ideal_cache();
-
     void get_request_arr();
     void start_work();
     int number_of_hits() const;

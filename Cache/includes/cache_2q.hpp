@@ -8,7 +8,6 @@ template <typename T>
 class cache_2q {
   public:
     cache_2q(size_t cache_size);
-
     void put(T num);
     int number_of_hits() const;
 

@@ -72,11 +72,11 @@ void cache_2q<T>::add_to_A_in(T el) {
     if (A_in_.size() == A_in_size_) {
         auto it = A_in_.end();
         it--;
+        add_to_A_out(*it);
         A_in_hash_.erase(*it);
         A_in_.pop_back();
         A_in_.push_front(el);
         A_in_hash_[el] = &(*A_in_.begin());
-        add_to_A_out(el);
     }
     else {
         A_in_.push_front(el);
@@ -105,6 +105,5 @@ void cache_2q<T>::put(T el) {
         add_to_A_in(el);
     }
 }
-
 
 #endif //CACHE_INCLUDES_CACHE_2Q_IMPL
