@@ -14,5 +14,7 @@ int main() {
         std::cin >> num;
         cache.put(num);
     }
+
+    std::cout << cache.number_of_hits() << std::endl;
     return 0;
 }

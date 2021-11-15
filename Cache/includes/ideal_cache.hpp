@@ -19,6 +19,7 @@ class ideal_cache {
     void put_el_in_cache(size_t pos);
     void put_maxdist_el_in_tail(size_t pos);
     int get_dist(T el, size_t pos);
+
     size_t request_arr_size_;
     size_t cache_capacity_;
     int hit_number_;
