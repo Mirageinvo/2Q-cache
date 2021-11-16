@@ -1,8 +1,5 @@
-#ingnore build folder
+#ignore build folder
 build
 
 #ignore vscode
 .vscode
-
-#ignore screenshots folder
-screenshots
