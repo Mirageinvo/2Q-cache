@@ -8,5 +8,5 @@ add_subdirectory(run_caches)
 add_subdirectory(tests)
 
 if (BENCHMARK)
-    add_subdirectory(Cache/benchmark)
+    add_subdirectory("Cache/benchmark")
 endif()

@@ -1,6 +1,5 @@
+#include <cassert>
 #include <iostream>
-#include <stdio.h>
-#include <assert.h>
 
 #include "../Cache/includes/cache_2q.hpp"
 #include "../Cache/includes/cache_2q_impl.hpp"
@@ -13,7 +12,7 @@ int main() {
 
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
-    scanf("%d", &num);
+    std::cin >> num;
     cache.put(num);
   }
 

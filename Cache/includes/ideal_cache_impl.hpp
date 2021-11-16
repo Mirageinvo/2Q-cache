@@ -2,7 +2,9 @@
 #define CACHE_INCLUDES_IDEAL_CACHE_IMPL
 
 #include <stdio.h>
+
 #include <cassert>
+
 #include "ideal_cache.hpp"
 
 template <typename T>
@@ -24,19 +26,16 @@ void ideal_cache<T>::get_request_arr(bool file, FILE* f) {
       fscanf(f, "%d", &request_arr_[i]);
       if (order_hash_.find(request_arr_[i]) == order_hash_.end()) {
         order_hash_[request_arr_[i]] = {0, {static_cast<int>(i)}};
-      } 
-      else {
+      } else {
         order_hash_[request_arr_[i]].second.push_back(i);
       }
     }
-  }
-  else{
+  } else {
     for (size_t i = 0; i < request_arr_size_; ++i) {
       scanf("%d", &request_arr_[i]);
       if (order_hash_.find(request_arr_[i]) == order_hash_.end()) {
         order_hash_[request_arr_[i]] = {0, {static_cast<int>(i)}};
-      } 
-      else {
+      } else {
         order_hash_[request_arr_[i]].second.push_back(i);
       }
     }

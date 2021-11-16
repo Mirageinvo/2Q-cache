@@ -1,7 +1,7 @@
 #ifndef CACHE_INCLUDES_CACHE_2Q_IMPL
 #define CACHE_INCLUDES_CACHE_2Q_IMPL
 
-#include <assert.h>
+#include <cassert>
 
 #include "cache_2q.hpp"
 

@@ -1,5 +1,4 @@
-#include <assert.h>
-
+#include <cassert>
 #include <iostream>
 
 #include "../Cache/includes/ideal_cache.hpp"
