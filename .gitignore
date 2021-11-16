@@ -3,3 +3,6 @@ build
 
 #ignore vscode
 .vscode
+
+#ignore screenshots folder
+screenshots
