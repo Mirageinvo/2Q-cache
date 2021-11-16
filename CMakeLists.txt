@@ -7,6 +7,6 @@ include(cmake/ClangFormat.cmake)
 add_subdirectory(run_caches)
 add_subdirectory(tests)
 
-#[[if (BENCHMARK)
+if (BENCHMARK)
     add_subdirectory(Cache/benchmark)
-endif()]]
+endif()
