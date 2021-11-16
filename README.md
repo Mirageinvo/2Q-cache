@@ -1,7 +1,7 @@
 # 2Q Cache and "Ideal" Cache
 
 In this project have been implemented and compared 2Q Cache and "Ideal" Cache(it has an array of requested pages before it starts).
-The caches have been compared with Google Benchmark
+The caches' working time have been compared with Google Benchmark
 
 ### To build the project the following is needed to be done:
 
