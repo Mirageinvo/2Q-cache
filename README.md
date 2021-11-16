@@ -1,7 +1,7 @@
 # 2Q Cache and "Ideal" Cache
 
-In this project have been implemented and compared 2Q Cache and "Ideal" Cache(it has an array of requested pages before start).
-The caches have been compared with GoogleBenchmark
+In this project have been implemented and compared 2Q Cache and "Ideal" Cache(it has an array of requested pages before it starts).
+The caches have been compared with Google Benchmark
 
 ### To build the project the following is needed to be done:
 
@@ -9,9 +9,11 @@ The caches have been compared with GoogleBenchmark
 mkdir build && cd build/
 
 cmake .. && make
+
 \\or with sanitizers:\\
 cmake -DADD-SANITIZERS=1 .. && make
-\\or if user has GoogleBenchmark installed they can try:\\
+
+\\or if user has Google Benchmark installed they can try:\\
 cmake -DBENCHMARK=1 .. && make
 
 afterwards:
@@ -28,6 +30,10 @@ make run_ideal_cache
 \\to use clang format for all *.cpp and *hpp files:\\
 make clang_format
 
-\\to run GoogleBenchmark if installed and -DBENCHMARK=1:\\
+\\to run Google Benchmark if installed and -DBENCHMARK=1:\\
 make run_caches_benchmark
 ```
+
+### Google Benchmark for "Ideal" Cache and 2Q Cache respectively:
+
+![alt text](screenshots/caches_benchmark.png)
