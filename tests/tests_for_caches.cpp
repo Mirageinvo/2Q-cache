@@ -1,8 +1,8 @@
 #include <iostream>
 
+#include "gtest/gtest.h"
 #include "cache_2q.hpp"
 #include "cache_2q_impl.hpp"
-#include "gtest/gtest.h"
 #include "ideal_cache.hpp"
 #include "ideal_cache_impl.hpp"
 
