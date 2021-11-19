@@ -1,5 +1,6 @@
 #include <benchmark/benchmark.h>
 
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -20,15 +21,15 @@ static void BM_Cache_2Q(benchmark::State& state) {
     }
     pth += std::to_string(state.range());
     pth += ".dat";
-    FILE* f;
-    f = fopen(pth.c_str(), "r");
-    fscanf(f, "%lu%lu", &cache_capacity, &request_num);
+    std::ifstream in;
+    in.open(pth);
+    in >> cache_capacity >> request_num;
     cache_2q<int> cache(cache_capacity);
     for (size_t i = 0; i < request_num; ++i) {
-      fscanf(f, "%d", &num);
+      in >> num;
       cache.put(num);
     }
-    fclose(f);
+    in.close();
   }
 }
 

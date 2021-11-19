@@ -25,9 +25,9 @@ class cache_2q {
   std::list<T> A_in_;
   std::list<T> A_out_;
   std::list<T> A_m_;
-  std::unordered_map<T, T*> A_in_hash_;
-  std::unordered_map<T, T*> A_out_hash_;
-  std::unordered_map<T, T*> A_m_hash_;
+  std::unordered_map<T, typename std::list<T>::iterator> A_in_hash_;
+  std::unordered_map<T, typename std::list<T>::iterator> A_out_hash_;
+  std::unordered_map<T, typename std::list<T>::iterator> A_m_hash_;
 };
 
 #endif  // CACHE_INCLUDES_2Q_CACHE

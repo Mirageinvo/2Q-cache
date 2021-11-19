@@ -6,9 +6,13 @@ set(IDEAL_CACHE_FILE ideal_cache)
 set(2Q_CACHE_FILE cache_2q)
 set(RUN_IDEAL_CACHE run_${IDEAL_CACHE_FILE})
 set(RUN_2Q_CACHE run_${2Q_CACHE_FILE})
+SET(PTH "../Cache/includes/")
 
 add_executable(${IDEAL_CACHE_FILE} run_ideal_cache.cpp)
+target_include_directories(${IDEAL_CACHE_FILE} PUBLIC ${PTH})
+
 add_executable(${2Q_CACHE_FILE} run_cache_2q.cpp)
+target_include_directories(${2Q_CACHE_FILE} PUBLIC ${PTH})
 
 add_custom_target(
     ${RUN_IDEAL_CACHE}

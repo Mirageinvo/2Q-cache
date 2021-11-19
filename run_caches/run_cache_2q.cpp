@@ -1,8 +1,8 @@
 #include <cassert>
 #include <iostream>
 
-#include "../Cache/includes/cache_2q.hpp"
-#include "../Cache/includes/cache_2q_impl.hpp"
+#include "cache_2q.hpp"
+#include "cache_2q_impl.hpp"
 
 int main() {
   size_t cache_capacity, request_num;

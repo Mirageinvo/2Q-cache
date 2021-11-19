@@ -6,12 +6,14 @@
 #include "cache_2q.hpp"
 
 template <typename T>
-cache_2q<T>::cache_2q(size_t cache_size) {
+cache_2q<T>::cache_2q(size_t cache_size)
+    : cache_size_(cache_size),
+      hit_number_(0),
+      A_in_size_(static_cast<size_t>(cache_size / 4)),
+      A_m_size_(static_cast<size_t>(cache_size / 4)),
+      A_out_size_(cache_size - (static_cast<size_t>(cache_size / 4) +
+                                static_cast<size_t>(cache_size / 4))) {
   assert(cache_size > 3);
-  cache_size_ = cache_size;
-  hit_number_ = 0;
-  A_in_size_ = A_m_size_ = static_cast<size_t>(cache_size_ / 4);
-  A_out_size_ = cache_size_ - (A_in_size_ + A_m_size_);
 }
 
 template <typename T>
@@ -21,14 +23,7 @@ int cache_2q<T>::number_of_hits() const {
 
 template <typename T>
 void cache_2q<T>::remove_from_A_out(T el) {
-  auto it = A_out_.end();
-  for (auto i = A_out_.begin(); i != A_out_.end(); ++i) {
-    if (*i == el) {
-      it = i;
-      break;
-    }
-  }
-  assert(it != A_out_.end());
+  auto it = A_out_hash_[el];
   A_out_.erase(it);
   A_out_hash_.erase(el);
 }
@@ -42,10 +37,10 @@ void cache_2q<T>::add_to_A_m(T el) {
     A_m_hash_.erase(*it);
     A_m_.pop_back();
     A_m_.push_front(el);
-    A_m_hash_[el] = &(*A_m_.begin());
+    A_m_hash_[el] = A_m_.begin();
   } else {
     A_m_.push_front(el);
-    A_m_hash_[el] = &(*A_m_.begin());
+    A_m_hash_[el] = A_m_.begin();
   }
 }
 
@@ -58,10 +53,10 @@ void cache_2q<T>::add_to_A_out(T el) {
     A_out_hash_.erase(*it);
     A_out_.pop_back();
     A_out_.push_front(el);
-    A_out_hash_[el] = &(*A_out_.begin());
+    A_out_hash_[el] = A_out_.begin();
   } else {
     A_out_.push_front(el);
-    A_out_hash_[el] = &(*A_out_.begin());
+    A_out_hash_[el] = A_out_.begin();
   }
 }
 
@@ -75,10 +70,10 @@ void cache_2q<T>::add_to_A_in(T el) {
     A_in_hash_.erase(*it);
     A_in_.pop_back();
     A_in_.push_front(el);
-    A_in_hash_[el] = &(*A_in_.begin());
+    A_in_hash_[el] = A_in_.begin();
   } else {
     A_in_.push_front(el);
-    A_in_hash_[el] = &(*A_in_.begin());
+    A_in_hash_[el] = A_in_.begin();
   }
 }
 
@@ -88,7 +83,7 @@ void cache_2q<T>::put(T el) {
     T head_el = *A_m_.begin();
     std::swap(*A_m_.begin(), *A_m_hash_[el]);
     A_m_hash_[head_el] = A_m_hash_[el];
-    A_m_hash_[el] = &(*A_m_.begin());
+    A_m_hash_[el] = A_m_.begin();
     hit_number_++;
   } else if (A_in_hash_.find(el) != A_in_hash_.end()) {
     hit_number_++;

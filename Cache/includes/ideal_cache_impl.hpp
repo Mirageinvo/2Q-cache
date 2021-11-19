@@ -1,9 +1,8 @@
 #ifndef CACHE_INCLUDES_IDEAL_CACHE_IMPL
 #define CACHE_INCLUDES_IDEAL_CACHE_IMPL
 
-#include <stdio.h>
-
 #include <cassert>
+#include <iostream>
 
 #include "ideal_cache.hpp"
 
@@ -20,24 +19,25 @@ ideal_cache<T>::~ideal_cache() {
 }
 
 template <typename T>
-void ideal_cache<T>::get_request_arr(bool file, FILE* f) {
-  if (file) {
-    for (size_t i = 0; i < request_arr_size_; ++i) {
-      fscanf(f, "%d", &request_arr_[i]);
-      if (order_hash_.find(request_arr_[i]) == order_hash_.end()) {
-        order_hash_[request_arr_[i]] = {0, {static_cast<int>(i)}};
-      } else {
-        order_hash_[request_arr_[i]].second.push_back(i);
-      }
+void ideal_cache<T>::get_request_arr() {
+  for (size_t i = 0; i < request_arr_size_; ++i) {
+    std::cin >> request_arr_[i];
+    if (order_hash_.find(request_arr_[i]) == order_hash_.end()) {
+      order_hash_[request_arr_[i]] = {0, {static_cast<int>(i)}};
+    } else {
+      order_hash_[request_arr_[i]].second.push_back(i);
     }
-  } else {
-    for (size_t i = 0; i < request_arr_size_; ++i) {
-      scanf("%d", &request_arr_[i]);
-      if (order_hash_.find(request_arr_[i]) == order_hash_.end()) {
-        order_hash_[request_arr_[i]] = {0, {static_cast<int>(i)}};
-      } else {
-        order_hash_[request_arr_[i]].second.push_back(i);
-      }
+  }
+}
+
+template <typename T>
+void ideal_cache<T>::get_request_arr(std::ifstream& in) {
+  for (size_t i = 0; i < request_arr_size_; ++i) {
+    in >> request_arr_[i];
+    if (order_hash_.find(request_arr_[i]) == order_hash_.end()) {
+      order_hash_[request_arr_[i]] = {0, {static_cast<int>(i)}};
+    } else {
+      order_hash_[request_arr_[i]].second.push_back(i);
     }
   }
 }
@@ -68,7 +68,7 @@ void ideal_cache<T>::put_el_in_cache(size_t pos) {
       cache_list_.push_back(el);
       auto tmp = cache_list_.end();
       tmp--;
-      list_hash_[el] = &(*tmp);
+      list_hash_[el] = tmp;
     } else {
       auto tmp = cache_list_.end();
       tmp--;
@@ -77,7 +77,7 @@ void ideal_cache<T>::put_el_in_cache(size_t pos) {
       cache_list_.push_back(el);
       tmp = cache_list_.end();
       tmp--;
-      list_hash_[el] = &(*tmp);
+      list_hash_[el] = tmp;
     }
   } else {
     hit_number_++;
@@ -101,8 +101,8 @@ void ideal_cache<T>::put_maxdist_el_in_tail(size_t pos) {
   auto tmp = cache_list_.end();
   tmp--;
   std::swap(*pretendent_iter, *tmp);
-  list_hash_[*tmp] = &(*pretendent_iter);
-  list_hash_[*pretendent_iter] = &(*tmp);
+  list_hash_[*tmp] = pretendent_iter;
+  list_hash_[*pretendent_iter] = tmp;
   tmp = cache_list_.end();
   tmp--;
   assert(*list_hash_[*pretendent_iter] == *tmp);

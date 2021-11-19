@@ -1,5 +1,6 @@
 #include <benchmark/benchmark.h>
 
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -19,12 +20,12 @@ static void BM_Ideal_Cache(benchmark::State& state) {
     }
     pth += std::to_string(state.range());
     pth += ".dat";
-    FILE* f;
-    f = fopen(pth.c_str(), "r");
-    fscanf(f, "%lu%lu", &cache_capacity, &request_num);
+    std::ifstream in;
+    in.open(pth);
+    in >> cache_capacity >> request_num;
     ideal_cache<int> cache(cache_capacity, request_num);
-    cache.get_request_arr(true, f);
-    fclose(f);
+    cache.get_request_arr(in);
+    in.close();
     cache.start_work();
   }
 }
