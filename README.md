@@ -11,7 +11,7 @@ mkdir build && cd build/
 cmake .. && make
 
 \\or with sanitizers:\\
-cmake -DADD-SANITIZERS=1 .. && make
+cmake -DADD_SANITIZERS=1 .. && make
 
 \\or if user has Google Benchmark installed they can try:\\
 cmake -DBENCHMARK=1 .. && make
