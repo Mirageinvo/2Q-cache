@@ -7,7 +7,7 @@
 #include "cache_2q.hpp"
 #include "cache_2q_impl.hpp"
 
-const int startTest = 3;
+const int startTest = 2;
 const int finalTest = 10;
 const int step = 1;
 
@@ -27,7 +27,7 @@ static void BM_Cache_2Q(benchmark::State& state) {
     cache_2q<int> cache(cache_capacity);
     for (size_t i = 0; i < request_num; ++i) {
       in >> num;
-      cache.put(num);
+      cache.check_in(num);
     }
     in.close();
   }

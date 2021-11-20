@@ -7,7 +7,7 @@
 #include "ideal_cache.hpp"
 #include "ideal_cache_impl.hpp"
 
-const int startTest = 3;
+const int startTest = 2;
 const int finalTest = 10;
 const int step = 1;
 

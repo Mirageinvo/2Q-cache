@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "gtest/gtest.h"
 #include "cache_2q.hpp"
 #include "cache_2q_impl.hpp"
+#include "gtest/gtest.h"
 #include "ideal_cache.hpp"
 #include "ideal_cache_impl.hpp"
 
@@ -116,197 +116,212 @@ TEST(IdealCache, TestNine) {
 
 TEST(Cache2Q, TestOne) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
+  std::ifstream in;
+  in.open("../../tests/files_for_tests/002.dat");
+  in >> cache_capacity >> request_num;
+  cache_2q<int> cache(cache_capacity);
+  for (size_t i = 0; i < request_num; ++i) {
+    in >> num;
+    num_of_hits += cache.check_in(num);
+  }
+  in.close();
+  EXPECT_EQ(num_of_hits, 0);
+}
+
+TEST(Cache2Q, TestTwo) {
+  size_t cache_capacity, request_num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/003.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 3);
+  EXPECT_EQ(num_of_hits, 3);
 }
 
-TEST(Cache2Q, TestTwo) {
+TEST(Cache2Q, TestThree) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/004.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 10);
+  EXPECT_EQ(num_of_hits, 10);
 }
 
-TEST(Cache2Q, TestThree) {
+TEST(Cache2Q, TestFour) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/005.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 32);
+  EXPECT_EQ(num_of_hits, 32);
 }
 
-TEST(Cache2Q, TestFour) {
+TEST(Cache2Q, TestFive) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/006.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 187);
+  EXPECT_EQ(num_of_hits, 187);
 }
 
-TEST(Cache2Q, TestFive) {
+TEST(Cache2Q, TestSix) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/007.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 469);
+  EXPECT_EQ(num_of_hits, 469);
 }
 
-TEST(Cache2Q, TestSix) {
+TEST(Cache2Q, TestSeven) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/008.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 3301);
+  EXPECT_EQ(num_of_hits, 3301);
 }
 
-TEST(Cache2Q, TestSeven) {
+TEST(Cache2Q, TestEight) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/009.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 953);
+  EXPECT_EQ(num_of_hits, 953);
 }
 
-TEST(Cache2Q, TestEight) {
+TEST(Cache2Q, TestNine) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/010.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 4984);
+  EXPECT_EQ(num_of_hits, 4984);
 }
 
-TEST(Cache2Q, TestNine) {
+TEST(Cache2Q, TestTen) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/011.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 89999);
+  EXPECT_EQ(num_of_hits, 89999);
 }
 
-TEST(Cache2Q, TestTen) {
+TEST(Cache2Q, TestEleven) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/012.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 110508);
+  EXPECT_EQ(num_of_hits, 110508);
 }
 
-TEST(Cache2Q, TestEleven) {
+TEST(Cache2Q, TestTwelve) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/013.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 298999);
+  EXPECT_EQ(num_of_hits, 298999);
 }
 
-TEST(Cache2Q, TestTwelve) {
+TEST(Cache2Q, TestThirteen) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/014.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 389999);
+  EXPECT_EQ(num_of_hits, 389999);
 }
 
-TEST(Cache2Q, TestThirteen) {
+TEST(Cache2Q, TestFourteen) {
   size_t cache_capacity, request_num;
-  int num;
+  int num, num_of_hits = 0;
   std::ifstream in;
   in.open("../../tests/files_for_tests/015.dat");
   in >> cache_capacity >> request_num;
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    cache.put(num);
+    num_of_hits += cache.check_in(num);
   }
   in.close();
-  EXPECT_EQ(cache.number_of_hits(), 75141);
+  EXPECT_EQ(num_of_hits, 75141);
 }
 
 int main(int argc, char* argv[]) {

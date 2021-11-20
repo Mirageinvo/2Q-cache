@@ -8,17 +8,15 @@
 template <typename T>
 cache_2q<T>::cache_2q(size_t cache_size)
     : cache_size_(cache_size),
-      hit_number_(0),
-      A_in_size_(static_cast<size_t>(cache_size / 4)),
-      A_m_size_(static_cast<size_t>(cache_size / 4)),
-      A_out_size_(cache_size - (static_cast<size_t>(cache_size / 4) +
-                                static_cast<size_t>(cache_size / 4))) {
-  assert(cache_size > 3);
-}
-
-template <typename T>
-int cache_2q<T>::number_of_hits() const {
-  return hit_number_;
+      A_out_size_(cache_size -
+                  (static_cast<size_t>(
+                      (cache_size - static_cast<size_t>(cache_size / 2)) / 2)) *
+                      2),
+      A_in_size_(static_cast<size_t>(
+          (cache_size - static_cast<size_t>(cache_size / 2)) / 2)),
+      A_m_size_(static_cast<size_t>(
+          (cache_size - static_cast<size_t>(cache_size / 2)) / 2)) {
+  assert(cache_size >= 3);
 }
 
 template <typename T>
@@ -61,7 +59,7 @@ void cache_2q<T>::add_to_A_out(T el) {
 }
 
 template <typename T>
-void cache_2q<T>::add_to_A_in(T el) {
+void cache_2q<T>::slow_get_page(T el) {
   assert(A_in_.size() <= A_in_size_);
   if (A_in_.size() == A_in_size_) {
     auto it = A_in_.end();
@@ -78,21 +76,22 @@ void cache_2q<T>::add_to_A_in(T el) {
 }
 
 template <typename T>
-void cache_2q<T>::put(T el) {
+bool cache_2q<T>::check_in(T el) {
   if (A_m_hash_.find(el) != A_m_hash_.end()) {
     T head_el = *A_m_.begin();
     std::swap(*A_m_.begin(), *A_m_hash_[el]);
     A_m_hash_[head_el] = A_m_hash_[el];
     A_m_hash_[el] = A_m_.begin();
-    hit_number_++;
+    return true;
   } else if (A_in_hash_.find(el) != A_in_hash_.end()) {
-    hit_number_++;
+    return true;
   } else if (A_out_hash_.find(el) != A_out_hash_.end()) {
     remove_from_A_out(el);
     add_to_A_m(el);
-    hit_number_++;
+    return true;
   } else {
-    add_to_A_in(el);
+    slow_get_page(el);
+    return false;
   }
 }
 
