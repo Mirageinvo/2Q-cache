@@ -21,7 +21,7 @@ afterwards:
 \\to run GoogleTests for either caches:\\
 make run_tests_for_caches
 
-\\to run 2Q Cache (note that 2Q Cache works only if cache capacity is greater than 3):\\
+\\to run 2Q Cache (note that 2Q Cache works only if cache capacity is greater than 2):\\
 make run_cache_2q
 
 \\to run "Ideal" Cache:\\
