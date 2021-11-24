@@ -8,12 +8,12 @@ template <typename T>
 class cache_2q {
  public:
   cache_2q(size_t cache_size);
-  bool check_in(T el);
+  bool query(T el);
+  void push(T el);
 
  private:
-  void slow_get_page(T el);
-  void add_to_A_m(T el);
   void add_to_A_out(T el);
+  void add_to_A_m(T el);
   void remove_from_A_out(T el);
 
   size_t cache_size_;

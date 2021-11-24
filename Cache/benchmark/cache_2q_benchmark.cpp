@@ -13,6 +13,7 @@ const int step = 1;
 
 static void BM_Cache_2Q(benchmark::State& state) {
   int num;
+  bool res;
   size_t cache_capacity, request_num;
   for (auto _ : state) {
     std::string pth = "../../../tests/files_for_tests/0";
@@ -27,7 +28,10 @@ static void BM_Cache_2Q(benchmark::State& state) {
     cache_2q<int> cache(cache_capacity);
     for (size_t i = 0; i < request_num; ++i) {
       in >> num;
-      cache.check_in(num);
+      res = cache.query(num);
+      if (!res) {
+        cache.push(num);
+      }
     }
     in.close();
   }

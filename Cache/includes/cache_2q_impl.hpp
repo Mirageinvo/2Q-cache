@@ -59,7 +59,7 @@ void cache_2q<T>::add_to_A_out(T el) {
 }
 
 template <typename T>
-void cache_2q<T>::slow_get_page(T el) {
+void cache_2q<T>::push(T el) {
   assert(A_in_.size() <= A_in_size_);
   if (A_in_.size() == A_in_size_) {
     auto it = A_in_.end();
@@ -76,7 +76,7 @@ void cache_2q<T>::slow_get_page(T el) {
 }
 
 template <typename T>
-bool cache_2q<T>::check_in(T el) {
+bool cache_2q<T>::query(T el) {
   if (A_m_hash_.find(el) != A_m_hash_.end()) {
     T head_el = *A_m_.begin();
     std::swap(*A_m_.begin(), *A_m_hash_[el]);
@@ -90,7 +90,6 @@ bool cache_2q<T>::check_in(T el) {
     add_to_A_m(el);
     return true;
   } else {
-    slow_get_page(el);
     return false;
   }
 }

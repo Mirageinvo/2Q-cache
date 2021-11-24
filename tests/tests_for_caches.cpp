@@ -115,6 +115,7 @@ TEST(IdealCache, TestNine) {
 }
 
 TEST(Cache2Q, TestOne) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -123,13 +124,18 @@ TEST(Cache2Q, TestOne) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 0);
 }
 
 TEST(Cache2Q, TestTwo) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -138,13 +144,18 @@ TEST(Cache2Q, TestTwo) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 3);
 }
 
 TEST(Cache2Q, TestThree) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -153,13 +164,18 @@ TEST(Cache2Q, TestThree) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 10);
 }
 
 TEST(Cache2Q, TestFour) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -168,13 +184,18 @@ TEST(Cache2Q, TestFour) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 32);
 }
 
 TEST(Cache2Q, TestFive) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -183,13 +204,18 @@ TEST(Cache2Q, TestFive) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 187);
 }
 
 TEST(Cache2Q, TestSix) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -198,13 +224,18 @@ TEST(Cache2Q, TestSix) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 469);
 }
 
 TEST(Cache2Q, TestSeven) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -213,13 +244,18 @@ TEST(Cache2Q, TestSeven) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 3301);
 }
 
 TEST(Cache2Q, TestEight) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -228,13 +264,18 @@ TEST(Cache2Q, TestEight) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 953);
 }
 
 TEST(Cache2Q, TestNine) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -243,13 +284,18 @@ TEST(Cache2Q, TestNine) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 4984);
 }
 
 TEST(Cache2Q, TestTen) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -258,13 +304,18 @@ TEST(Cache2Q, TestTen) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 89999);
 }
 
 TEST(Cache2Q, TestEleven) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -273,13 +324,18 @@ TEST(Cache2Q, TestEleven) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 110508);
 }
 
 TEST(Cache2Q, TestTwelve) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -288,13 +344,18 @@ TEST(Cache2Q, TestTwelve) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 298999);
 }
 
 TEST(Cache2Q, TestThirteen) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -303,13 +364,18 @@ TEST(Cache2Q, TestThirteen) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 389999);
 }
 
 TEST(Cache2Q, TestFourteen) {
+  bool res;
   size_t cache_capacity, request_num;
   int num, num_of_hits = 0;
   std::ifstream in;
@@ -318,7 +384,11 @@ TEST(Cache2Q, TestFourteen) {
   cache_2q<int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
-    num_of_hits += cache.check_in(num);
+    res = cache.query(num);
+    num_of_hits += res;
+    if (!res) {
+      cache.push(num);
+    }
   }
   in.close();
   EXPECT_EQ(num_of_hits, 75141);
