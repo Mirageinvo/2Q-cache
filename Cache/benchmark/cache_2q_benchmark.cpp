@@ -25,7 +25,7 @@ static void BM_Cache_2Q(benchmark::State& state) {
     std::ifstream in;
     in.open(pth);
     in >> cache_capacity >> request_num;
-    cache_2q<int> cache(cache_capacity);
+    cache_2q<int, int> cache(cache_capacity);
     for (size_t i = 0; i < request_num; ++i) {
       in >> num;
       res = cache.query(num);

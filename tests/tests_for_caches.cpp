@@ -39,7 +39,7 @@ TEST(IdealCache, TestThree) {
   cache.get_request_arr(in);
   in.close();
   cache.start_work();
-  EXPECT_EQ(cache.number_of_hits(), 6);
+  EXPECT_EQ(cache.number_of_hits(), 7);
 }
 
 TEST(IdealCache, TestFour) {
@@ -51,7 +51,7 @@ TEST(IdealCache, TestFour) {
   cache.get_request_arr(in);
   in.close();
   cache.start_work();
-  EXPECT_EQ(cache.number_of_hits(), 17);
+  EXPECT_EQ(cache.number_of_hits(), 18);
 }
 
 TEST(IdealCache, TestFive) {
@@ -87,7 +87,7 @@ TEST(IdealCache, TestSeven) {
   cache.get_request_arr(in);
   in.close();
   cache.start_work();
-  EXPECT_EQ(cache.number_of_hits(), 742);
+  EXPECT_EQ(cache.number_of_hits(), 743);
 }
 
 TEST(IdealCache, TestEight) {
@@ -121,7 +121,7 @@ TEST(Cache2Q, TestOne) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/002.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -141,7 +141,7 @@ TEST(Cache2Q, TestTwo) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/003.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -161,7 +161,7 @@ TEST(Cache2Q, TestThree) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/004.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -181,7 +181,7 @@ TEST(Cache2Q, TestFour) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/005.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -201,7 +201,7 @@ TEST(Cache2Q, TestFive) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/006.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -221,7 +221,7 @@ TEST(Cache2Q, TestSix) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/007.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -241,7 +241,7 @@ TEST(Cache2Q, TestSeven) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/008.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -261,7 +261,7 @@ TEST(Cache2Q, TestEight) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/009.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -281,7 +281,7 @@ TEST(Cache2Q, TestNine) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/010.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -301,7 +301,7 @@ TEST(Cache2Q, TestTen) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/011.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -321,7 +321,7 @@ TEST(Cache2Q, TestEleven) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/012.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -341,7 +341,7 @@ TEST(Cache2Q, TestTwelve) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/013.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -361,7 +361,7 @@ TEST(Cache2Q, TestThirteen) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/014.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);
@@ -381,7 +381,7 @@ TEST(Cache2Q, TestFourteen) {
   std::ifstream in;
   in.open("../../tests/files_for_tests/015.dat");
   in >> cache_capacity >> request_num;
-  cache_2q<int> cache(cache_capacity);
+  cache_2q<int, int> cache(cache_capacity);
   for (size_t i = 0; i < request_num; ++i) {
     in >> num;
     res = cache.query(num);

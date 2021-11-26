@@ -63,26 +63,29 @@ template <typename T>
 void ideal_cache<T>::put_el_in_cache(size_t pos) {
   T el = request_arr_[pos];
   auto find_res = list_hash_.find(el);
-  if (find_res == list_hash_.end()) {
-    if (cache_list_.size() < cache_capacity_) {
-      cache_list_.push_back(el);
-      auto tmp = cache_list_.end();
-      tmp--;
-      list_hash_[el] = tmp;
+  if (find_res != list_hash_.end() ||
+      order_hash_[el].first < order_hash_[el].second.size() - 1) {
+    if (find_res == list_hash_.end()) {
+      if (cache_list_.size() < cache_capacity_) {
+        cache_list_.push_back(el);
+        auto tmp = cache_list_.end();
+        tmp--;
+        list_hash_[el] = tmp;
+      } else {
+        auto tmp = cache_list_.end();
+        tmp--;
+        list_hash_.erase(*tmp);
+        cache_list_.pop_back();
+        cache_list_.push_back(el);
+        tmp = cache_list_.end();
+        tmp--;
+        list_hash_[el] = tmp;
+      }
     } else {
-      auto tmp = cache_list_.end();
-      tmp--;
-      list_hash_.erase(*tmp);
-      cache_list_.pop_back();
-      cache_list_.push_back(el);
-      tmp = cache_list_.end();
-      tmp--;
-      list_hash_[el] = tmp;
+      hit_number_++;
     }
-  } else {
-    hit_number_++;
+    order_hash_[el].first++;
   }
-  order_hash_[el].first++;
 }
 
 template <typename T>

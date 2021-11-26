@@ -25,9 +25,7 @@ int main() {
               << "Cache capacity is less than 3" << std::endl
               << std::endl;
   } else {
-    assert(cache_capacity >= 3);
-
-    cache_2q<int> cache(cache_capacity);
+    cache_2q<int, int> cache(cache_capacity);
     for (size_t i = 0; i < request_num; ++i) {
       std::cin >> num;
       res = cache.query(num);

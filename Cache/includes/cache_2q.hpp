@@ -4,11 +4,11 @@
 #include <list>
 #include <unordered_map>
 
-template <typename T>
+template <typename T, typename KeyT>
 class cache_2q {
  public:
   cache_2q(size_t cache_size);
-  bool query(T el);
+  bool query(KeyT key);
   void push(T el);
 
  private:
@@ -23,9 +23,9 @@ class cache_2q {
   std::list<T> A_in_;
   std::list<T> A_out_;
   std::list<T> A_m_;
-  std::unordered_map<T, typename std::list<T>::iterator> A_in_hash_;
-  std::unordered_map<T, typename std::list<T>::iterator> A_out_hash_;
-  std::unordered_map<T, typename std::list<T>::iterator> A_m_hash_;
+  std::unordered_map<KeyT, typename std::list<T>::iterator> A_in_hash_;
+  std::unordered_map<KeyT, typename std::list<T>::iterator> A_out_hash_;
+  std::unordered_map<KeyT, typename std::list<T>::iterator> A_m_hash_;
 };
 
 #endif  // CACHE_INCLUDES_2Q_CACHE
