@@ -5,7 +5,7 @@
 #include <unordered_map>
 
 template <typename T, typename KeyT>
-class cache_2q {
+class cache_2q final {
  public:
   cache_2q(size_t cache_size);
   bool query(KeyT key);

@@ -7,7 +7,7 @@
 #include <vector>
 
 template <typename T>
-class ideal_cache {
+class ideal_cache final {
  public:
   ideal_cache(size_t cache_capacity, size_t request_arr_size);
   ~ideal_cache();
