@@ -19,7 +19,7 @@ or if user has Google Benchmark installed they can try:
 cmake -DBENCHMARK=1 .. && make
 ```
 afterwards:
-```
+
 to run GoogleTests for either caches:
 ```
 make run_tests_for_caches
