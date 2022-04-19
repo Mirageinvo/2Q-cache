@@ -9,28 +9,35 @@ The caches' working time have been compared with Google Benchmark
 mkdir build && cd build/
 
 cmake .. && make
-
-\\or with sanitizers:\\
+```
+or with sanitizers:
+```
 cmake -DADD_SANITIZERS=1 .. && make
-
-\\or if user has Google Benchmark installed they can try:\\
+```
+or if user has Google Benchmark installed they can try:
+```
 cmake -DBENCHMARK=1 .. && make
-
+```
 afterwards:
-
-\\to run GoogleTests for either caches:\\
+```
+to run GoogleTests for either caches:
+```
 make run_tests_for_caches
-
-\\to run 2Q Cache (note that 2Q Cache works only if cache capacity is greater than 2):\\
+```
+to run 2Q Cache (note that 2Q Cache works only if cache capacity is greater than 2):
+```
 make run_cache_2q
-
-\\to run "Ideal" Cache:\\
+```
+to run "Ideal" Cache:
+```
 make run_ideal_cache
-
-\\to use clang format for all *.cpp and *hpp files:\\
+```
+to use clang format for all *.cpp and *hpp files:
+```
 make clang_format
-
-\\to run Google Benchmark if installed and -DBENCHMARK=1:\\
+```
+to run Google Benchmark if installed and -DBENCHMARK=1:
+```
 make run_caches_benchmark
 ```
 
